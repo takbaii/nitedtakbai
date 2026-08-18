@@ -20,21 +20,26 @@ const CONFIG = {
   SYSTEM_NAME: 'ระบบนิเทศภายในโรงเรียนตากใบ'
 };
 
+// ============================================================
 // ปิด CAPTCHA แบบโจทย์คณิตศาสตร์ในหน้า Login
-// การยืนยันสิทธิ์ยังคงทำที่ระบบ Login/Backend ตามเดิม
+// ============================================================
+// index.html รุ่นเดิมยังมี markup/handler ของ CAPTCHA อยู่ ดังนั้น
+// ให้ปิดทั้งการแสดงผลและการตรวจ CAPTCHA หลัง script ของหน้าโหลดเสร็จ
 (function disableMathCaptcha() {
+  // ซ่อนทันทีที่ config.js โหลด เพื่อไม่ให้ CAPTCHA กระพริบขึ้นมา
+  var style = document.createElement('style');
+  style.id = 'disable-math-captcha-style';
+  style.textContent = '.login-captcha{display:none!important;}';
+  document.head.appendChild(style);
+
   function apply() {
     var captcha = document.querySelector('.login-captcha');
     if (captcha) captcha.style.display = 'none';
 
-    var input = document.getElementById('loginCaptcha');
-    if (input) {
-      input.value = '';
-      input.removeAttribute('required');
-    }
-
-    // แทนที่ handler เดิมให้ Login ไม่ตรวจคำตอบ CAPTCHA
-    if (typeof window.handleIndexLogin === 'function') {
+    // หลัง DOMContentLoaded handler ของ index.html ทำงานแล้ว
+    // handleIndexLogin จะถูกสร้างขึ้น จึงต้อง override ตรงนี้
+    if (typeof window.handleIndexLogin === 'function' && !window.__mathCaptchaDisabled) {
+      window.__mathCaptchaDisabled = true;
       window.handleIndexLogin = function() {
         var usernameEl = document.getElementById('loginUsername');
         var passwordEl = document.getElementById('loginPassword');
@@ -91,10 +96,14 @@ const CONFIG = {
     }
   }
 
-  // config.js โหลดก่อน inline script ของหน้า จึงรอจน DOM และ script ทั้งหมดพร้อม
+  // รอให้ DOMContentLoaded handlers ใน index.html สร้าง handleIndexLogin ก่อน
+  function scheduleApply() {
+    setTimeout(apply, 0);
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', apply);
+    document.addEventListener('DOMContentLoaded', scheduleApply);
   } else {
-    apply();
+    scheduleApply();
   }
 })();
