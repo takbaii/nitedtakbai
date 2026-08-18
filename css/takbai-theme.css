@@ -1,0 +1,72 @@
+/* ============================================================
+   Tak Bai School Theme - Modern Yellow / Red / White
+   ============================================================ */
+:root {
+  --primary: #b71c1c;
+  --primary-light: #d32f2f;
+  --primary-dark: #7f0000;
+  --secondary: #f4b400;
+  --secondary-light: #ffd54f;
+  --accent: #f4b400;
+  --accent-light: #ffe082;
+  --danger: #c62828;
+  --danger-light: #ef5350;
+  --warning: #f4b400;
+  --info: #b71c1c;
+  --success: #2e7d32;
+  --bg-main: #fffaf0;
+  --bg-card: #ffffff;
+  --text-dark: #3b1b1b;
+  --text-light: #7b6666;
+  --border: #f0dfb2;
+  --shadow: 0 4px 18px rgba(100,40,20,.08);
+  --shadow-lg: 0 12px 34px rgba(100,40,20,.14);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+body {
+  background: radial-gradient(circle at 10% 0%,rgba(244,180,0,.12),transparent 28%),radial-gradient(circle at 90% 10%,rgba(183,28,28,.08),transparent 25%),var(--bg-main);
+}
+.navbar {
+  background: linear-gradient(135deg,#8f1010 0%,#b71c1c 48%,#d32f2f 100%);
+  border-bottom: 4px solid var(--secondary);
+  box-shadow: 0 6px 22px rgba(100,0,0,.18);
+}
+.navbar-inner { min-height:72px;height:auto;padding-top:6px;padding-bottom:6px; }
+.navbar-brand .logo { width:52px;height:52px;background:#fff;border:3px solid var(--secondary);border-radius:50%;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15);flex-shrink:0; }
+.navbar-brand .logo img { width:100%;height:100%;object-fit:contain;display:block; }
+.navbar-brand .brand-text { font-size:17px;letter-spacing:.1px; }
+.navbar-brand .brand-sub { color:#ffe082;font-weight:600; }
+.navbar-nav a { border:1px solid transparent; }
+.navbar-nav a:hover,.navbar-nav a.active { background:rgba(255,255,255,.16);border-color:rgba(255,213,79,.45);color:#fff;box-shadow:inset 0 -2px 0 var(--secondary); }
+.btn-login,.btn-logout { background:rgba(255,255,255,.12);border-color:rgba(255,213,79,.5); }
+.btn-login:hover,.btn-logout:hover { background:var(--secondary);border-color:var(--secondary);color:#4a2100; }
+.main-content { padding-top:30px; }
+.page-header { padding:20px 24px;margin-bottom:24px;background:linear-gradient(135deg,#fff 0%,#fff8e1 100%);border:1px solid #f1dfaa;border-left:6px solid var(--primary);border-radius:var(--radius);box-shadow:var(--shadow); }
+.page-header h1 { color:var(--primary);font-size:28px; }
+.page-header p { color:#765c4a; }
+.card,.stat-card { border-color:#f0dfb2;box-shadow:var(--shadow); }
+.card:hover,.stat-card:hover { box-shadow:var(--shadow-lg); }
+.card-header { background:linear-gradient(90deg,#fffdf8,#fff8e8);border-bottom-color:#f0dfb2; }
+.card-header h3 { color:var(--primary); }
+.stat-card { position:relative;overflow:hidden; }
+.stat-card::before { content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--primary),var(--secondary)); }
+.stat-icon.blue,.stat-icon.purple,.stat-icon.orange,.stat-icon.red,.stat-icon.green { background:#fff4d6;color:var(--primary); }
+.stat-info h4 { color:#4a2020; }
+table thead th { background:linear-gradient(90deg,var(--primary-dark),var(--primary)); }
+table tbody tr:hover { background:#fffaf0; }
+.btn-primary { background:linear-gradient(135deg,var(--primary),#d32f2f);box-shadow:0 4px 12px rgba(183,28,28,.18); }
+.btn-primary:hover { background:linear-gradient(135deg,#8f1010,var(--primary)); }
+.btn-warning { background:linear-gradient(135deg,#e0a000,var(--secondary));color:#4a2600; }
+.btn-outline:hover { border-color:var(--secondary);background:#fff8e1; }
+.form-control:focus { border-color:var(--primary-light);box-shadow:0 0 0 3px rgba(183,28,28,.12); }
+.calendar-header { background:linear-gradient(135deg,var(--primary-dark),var(--primary));border-bottom:3px solid var(--secondary); }
+.calendar-day-header { background:#fff8e1;color:var(--primary); }
+.badge-pending,.badge-revise,.badge-fair { background:#fff3cd;color:#7a4b00; }
+.modal-header { border-bottom-color:#f0dfb2; }
+.modal-header h3 { color:var(--primary); }
+.login-box { border-color:#f0dfb2; }
+.modal-overlay .modal { border-top:5px solid var(--secondary); }
+.card-header::after { content:'';width:42px;height:3px;border-radius:4px;background:var(--secondary);margin-left:auto; }
+@media (max-width:1000px) { .navbar-inner{flex-wrap:wrap;gap:8px}.navbar-nav{order:3;width:100%;overflow-x:auto;padding-bottom:4px} }
+@media (max-width:700px) { .main-content{padding:16px}.page-header h1{font-size:22px}.navbar-brand .brand-text{font-size:15px}.navbar-brand .logo{width:46px;height:46px} }
